@@ -20,8 +20,7 @@ const fileUpload = require("express-fileupload");
 const connectDB = require("./db");
 
 //Load env vars *******************************************************
-// dotenv.config({path: "./config/config.env"});
-dotenv.config();
+dotenv.config({path: "./config/config.env"});
 
 //Connect To DB********************************************************
 if (process.env.NODE_ENV !== "test") {

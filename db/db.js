@@ -3,12 +3,17 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 mongoose.set("strictPopulate", false);
 
+let mongod = null;
+
 const connectDB = async () => {
   let dbURL = process.env.MONGO_URI;
 
   if (process.env.NODE_ENV === "test") {
-    dbURL =
-      process.env.MONGO_URI_TEST || "mongodb://127.0.0.1:27017/bnodeapi_test";
+    if (!mongod) {
+      const { MongoMemoryServer } = require("mongodb-memory-server");
+      mongod = await MongoMemoryServer.create();
+    }
+    dbURL = mongod.getUri();
     console.log(`Using Test Database: ${dbURL}`.yellow.bold);
   }
   try {

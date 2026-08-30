@@ -20,8 +20,7 @@ const fileUpload = require("express-fileupload");
 const connectDB = require("./db");
 
 //Load env vars *******************************************************
-// dotenv.config({path: "./config/config.env"});
-dotenv.config();
+dotenv.config({path: "./config/config.env"});
 
 // Enforce environment secrets in production and supply secure fallbacks for development/testing
 if (process.env.NODE_ENV === "production") {
